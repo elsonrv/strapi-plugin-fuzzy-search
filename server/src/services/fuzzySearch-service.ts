@@ -8,6 +8,7 @@ import {
   Result,
 } from '../interfaces/interfaces';
 import { validateQuery } from './validation-service';
+import { Kind } from '@strapi/types/dist/modules/documents/params/status';
 
 const weightScores = (
   a: Fuzzysort.KeysResult<Entry>,
@@ -153,12 +154,14 @@ export const buildTransliteratedResult = ({
 export default async function getResult({
   contentType,
   query,
+  status,
   filters,
   populate,
   locale,
 }: {
   contentType: ContentType;
   query: string;
+  status;
   filters?: WhereQuery;
   populate?: string;
   locale?: string;
@@ -166,7 +169,8 @@ export default async function getResult({
   const buildFilteredEntries = async () => {
     await validateQuery(contentType, locale);
 
-    return (await strapi.entityService.findMany(contentType.uid, {
+    return (await strapi.documents(contentType.uid).findMany({
+      status: status || 'published',
       ...(filters && { filters }),
       ...(locale && { locale }),
       ...(populate && { populate }),

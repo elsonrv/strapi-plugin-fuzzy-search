@@ -5,6 +5,11 @@
   "compilerOptions": {
     "rootDir": "../",
     "baseUrl": ".",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "sourceMap": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "target": "ESNext"
   }
 }
