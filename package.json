@@ -1,6 +1,6 @@
 {
-  "name": "strapi-plugin-fuzzy-search",
-  "version": "0.0.0-development",
+  "name": "@elsonrv/strapi-plugin-fuzzy-search",
+  "version": "0.0.0-betav2",
   "description": "Register a weighted fuzzy search endpoint for Strapi Headless CMS you can add your content types to in no time.",
   "strapi": {
     "displayName": "Fuzzy Search",
@@ -39,16 +39,11 @@
     "prettier:write": "prettier --write ./server ./tests"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "tag": "latest"
+    "registry": "https://npm.pkg.github.com/"
   },
   "release": {
     "branches": [
-      "main",
-      {
-        "name": "beta",
-        "prerelease": true
-      }
+      "betaV2"
     ]
   },
   "dependencies": {
@@ -96,7 +91,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DomDew/strapi-plugin-fuzzy-search.git"
+    "url": "https://github.com/elsonrv/strapi-plugin-fuzzy-search.git"
   },
   "keywords": [
     "strapi",
