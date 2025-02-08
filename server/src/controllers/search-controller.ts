@@ -15,8 +15,7 @@ export default () => ({
       pagination,
       filters: filtersQuery,
       locale,
-      populate,
-      status,
+      populate
     } = ctx.query;
     const { auth } = ctx.state;
 
@@ -54,7 +53,6 @@ export default () => ({
           await getResult({
             contentType,
             query,
-            status,
             filters: filtersQuery?.[contentType.info.pluralName],
             populate: populate?.[contentType.info.pluralName],
             locale:

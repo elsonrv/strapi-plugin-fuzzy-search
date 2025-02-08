@@ -16,8 +16,7 @@ export const querySchema = object({
   locale: string(),
   filters: object({
     contentTypes: string(),
-  }),
-  status: string()
+  })
 });
 
 export type PaginationBaseQuery = InferType<typeof paginationSchema>;
@@ -25,10 +24,9 @@ export type PopulationSchema = InferType<typeof populationSchema>;
 
 type QuerySchema = InferType<typeof querySchema>;
 
-export type SearchQuery = Omit<QuerySchema, 'filters'> & {
+export type SearchQuery = Omit<QuerySchema, 'filters' | 'fields'> & {
   pagination?: Record<string, PaginationBaseQuery>;
   populate?: Record<string, PopulationSchema>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   filters?: QuerySchema['filters'] & Record<string, any>;
-  status?: string
 };

@@ -154,24 +154,26 @@ export const buildTransliteratedResult = ({
 export default async function getResult({
   contentType,
   query,
-  status,
   filters,
   populate,
   locale,
 }: {
   contentType: ContentType;
   query: string;
-  status;
   filters?: WhereQuery;
   populate?: string;
   locale?: string;
 }): Promise<Result> {
   const buildFilteredEntries = async () => {
     await validateQuery(contentType, locale);
+    
+    filters = filters ? filters : contentType.filters
+    populate = populate ? populate : contentType.populate
 
     return (await strapi.documents(contentType.uid).findMany({
-      status: status || 'published',
+      status: contentType.status as Kind || 'published',
       ...(filters && { filters }),
+      ...(contentType.fields && { fields: contentType.fields }),
       ...(locale && { locale }),
       ...(populate && { populate }),
     })) as unknown as Entry[];

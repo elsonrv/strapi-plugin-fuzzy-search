@@ -41,7 +41,6 @@ const getCustomTypes = (strapi: Core.Strapi, nexus: any) => {
               pagination?: PaginationArgs;
               filters?: Record<string, unknown>;
               locale?: string;
-              status?: string;
             },
             ctx: any,
             auth: Record<string, unknown>,
@@ -51,7 +50,6 @@ const getCustomTypes = (strapi: Core.Strapi, nexus: any) => {
               pagination,
               filters,
               locale: contentTypeLocaleQuery,
-              status,
             } = args;
 
             const locale = contentTypeLocaleQuery || parentLocaleQuery;
@@ -77,7 +75,6 @@ const getCustomTypes = (strapi: Core.Strapi, nexus: any) => {
             const results = await getResult({
               contentType,
               query,
-              status,
               filters: transformedFilters,
               populate: undefined,
               locale,
